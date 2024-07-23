@@ -1,4 +1,4 @@
-#    
+#
 name: Build Result
 
 on:
@@ -16,13 +16,12 @@ on:
       - '.github/workflows/call-docker-build-result.yaml'
 
 jobs:
-  login-and-build:
-    name: Login, Build and Push
+  build:
+    name: Build Docker Image
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
-      pull-requests: write
+      packages: read
 
     steps:
       - name: Checkout code
@@ -38,16 +37,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
+      - name: Build Docker image
         uses: docker/build-push-action@v5
         with:
           context: result
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/example-voting-app-result:latest
-            ghcr.io/${{ github.repository_owner }}/example-voting-app-result:${{ github.sha }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          push: false
+          load: true
+          tags: ghcr.io/${{ github.repository }}/example-voting-app-result:latest
+          platforms: linux/amd64
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-      
+      - name: Test image
+        run: |
+          docker image ls
+          docker run --rm ghcr.io/${{ github.repository }}/example-voting-app-result:latest echo "Image test successful"
