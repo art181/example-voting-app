@@ -19,7 +19,13 @@ on:
       - '.github/workflows/call-docker-build-result.yaml'
 
 jobs:
-  call-docker-build:
+ steps:
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: art181
+          password: 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  call-docker-build:
 
     name: Result Call Docker Build
 
