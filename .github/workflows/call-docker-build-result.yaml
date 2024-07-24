@@ -32,7 +32,7 @@ jobs:
         with:
           registry: ghcr.io
           username: art181
-          password: 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
+          password: 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
           
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
