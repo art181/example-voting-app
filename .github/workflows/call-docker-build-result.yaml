@@ -28,7 +28,7 @@ jobs:
         with:
           registry: ghcr.io
           username: art181  # Use repository owner for safety
-          password: ${{ secrets.GHCR_PAT }}  # Reference the secret
+          password: ${{ MY_SECRET_NAME }}  # Reference the secret
           
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
