@@ -49,4 +49,4 @@ jobs:
         with:
           registry: ghcr.io
           username: art181
-          password: ${{ MY_SECRET_NAME }}
+          password: ${{ secrets.MY_SECRET_NAME }}
