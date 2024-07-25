@@ -1,4 +1,4 @@
-# Results Application-1
+# Results App
 name: Build Result
 # Template source: https://github.com/dockersamples/.github/blob/main/templates/call-docker-build.yaml
 
